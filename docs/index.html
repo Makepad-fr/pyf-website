@@ -539,6 +539,27 @@ body{
 .faq summary{ cursor:pointer; font-weight:700; }
 .faq p{ margin:8px 0 0; color:#cfcfcf; }
 
+
+.portrait-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.portrait {
+  width: 100%;
+  filter: grayscale(100%);
+  object-fit: cover;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: cover;
+  -webkit-mask-size: cover;
+}
+
+
 </style>
 </head>
 <body>
