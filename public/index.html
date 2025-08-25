@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pierre-Yves Fabrissin — Délégué à la protection des données</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0b;
+    --fg:#f1f1f1;
+    --muted:#b9b9b9;
+    --accent:#2d5453;
+    --accent-2:#3b6e6b;
+    --stroke:#4a6463;
+    --card:#121212;
+    --maxw:1240px;
+    --round:18px;
+    
+  }
+  
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#000; /* solid black everywhere */
+  color:var(--fg);
+  font-family:Inter,system-ui,Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(1200px 540px at 50% -200px,#1a1a1a33 0%,transparent 60%),
+    linear-gradient(180deg,#0d0d0d 0%,#000 100%);
+  z-index:-1;
+}
+
+
+
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* NAV */
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+  .brand .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#fff,#9f9f9f);display:grid;place-items:center;color:#111;font-weight:900}
+  .links{display:flex;gap:28px;flex-wrap:wrap}
+  .links a{color:#c8c8c8;font-size:14px;font-weight:600}
+  .cta{background:var(--accent);color:#ecfffd;font-weight:800;border-radius:10px;padding:12px 16px;display:inline-flex;align-items:center;box-shadow:0 10px 30px rgba(45,84,83,.35);transition:transform .15s ease, box-shadow .15s ease}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(45,84,83,.45);background:var(--accent-2)}
+
+  /* HERO (inchangé) */
+.hero{ position:relative; overflow:hidden; }  /* add overflow to clip edges */
+.word{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:-8px;                 /* pull it to the very top (tweak -20px..20px) */
+  width:100vw;              /* not limited by .container */
+  display:flex;
+  justify-content:center;
+  pointer-events:none;
+  opacity:.18;
+  z-index:1;                /* behind content, above the hero ::before */
+}
+.word h1{
+  margin:0;
+  font-family:"Playfair Display",serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  line-height:.9;
+  font-size:clamp(110px, 18vw, 260px);  /* big like the reference */
+  color:transparent;
+  -webkit-text-stroke:1px var(--stroke);  /* outline */
+  text-shadow:0 6px 18px rgba(0,0,0,.45); /* subtle 3D depth */
+}
+.copy, .portrait-wrap, .badge { position:relative; z-index:2; }
+
+.layout{display:grid;grid-template-columns:1fr min(520px,38vw) 1fr;align-items:center;gap:32px}
+  .copy{z-index:2}
+  .eyebrow{color:#9f9f9f;text-transform:uppercase;letter-spacing:.18em;font-size:12px;margin-bottom:16px}
+  .title{font-family:"Playfair Display",serif;font-weight:700;font-size:40px;line-height:1.12;margin:0 0 14px;max-width:540px}
+  .lead{color:#cdcdcd;max-width:520px;margin-bottom:22px}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#ecfffd;font-weight:800;border-radius:12px;padding:14px 18px;box-shadow:0 10px 30px rgba(45,84,83,.35);transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(45,84,83,.45);background:var(--accent-2)}
+  .btn.secondary{background:#1a1a1a;color:#eaeaea;border:1px solid #2f2f2f;box-shadow:none}
+  .portrait-wrap{position:relative;z-index:1;display:grid;place-items:center}
+  .portrait{width:100%;filter:grayscale(100%);object-fit:cover}
+  .badge{display:grid;place-items:center}
+  .badge-wrap{position:relative;width:190px;height:190px}
+  .badge svg{width:100%;height:100%;animation:spin 28s linear infinite}
+  .badge text{font-family:Inter,system-ui,sans-serif;font-weight:700;letter-spacing:.18em;font-size:11px;fill:#d6e7e6}
+  .badge .download-btn{position:absolute;inset:0;margin:auto;width:92px;height:92px;border-radius:999px;display:grid;place-items:center;background:var(--accent);color:#ecfffd;font-weight:800;box-shadow:0 10px 40px rgba(45,84,83,.45);transition:transform .15s ease, background .15s ease}
+  .badge .download-btn:hover{transform:translateY(-2px);background:var(--accent-2)}
+  .badge .download-btn .icon{width:18px;height:18px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg);margin-top:-4px}
+  .clients{display:flex;gap:24px;flex-wrap:wrap;align-items:center;color:#a5a5a5;font-size:14px;margin-top:34px}
+  .dot{width:4px;height:4px;border-radius:50%;background:#6b6b6b;display:inline-block;margin:0 8px}
+  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.badge svg{animation:none}.btn,.cta{transition:none}}
+
+  /* ===== NEW: sections après le hero (look moderne) ===== */
+  section.section{padding:72px 0}
+  .section-title{font-family:"Playfair Display",serif;font-size:38px;line-height:1.15;margin:0 0 14px}
+  .section-sub{color:#cfcfcf;margin:0 0 26px}
+  .grid{display:grid;gap:22px}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--card);border:1px solid #1d1d1d;border-radius:var(--round);padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#e9e6dc;background:#2a2a22;border:1px solid #3a3a3a;border-radius:999px;padding:6px 10px}
+  .card h4{margin:10px 0 6px;font-size:20px}
+  .muted{color:#cfcfcf}
+
+  /* Stats bar */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:18px}
+  .stat{background:linear-gradient(180deg,#2a2a2a,#1a1a1a);border:1px solid #3a3a3a;border-radius:20px;padding:22px 16px;display:grid;place-items:center;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+  .stat strong{font-family:"Playfair Display",serif;font-size:30px}
+  .stat span{color:#cfcfcf;font-size:14px}
+
+  /* ===== Modern EXP timeline ===== */
+.xp{
+  position:relative;
+  display:grid;
+  gap:18px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;
+  background:linear-gradient(180deg,#131313,#0f0f0f);
+  box-shadow:0 10px 34px rgba(0,0,0,.5);
+  overflow:hidden;
+}
+.xp::before{
+  content:"";
+  position:absolute; left:34px; top:12px; bottom:12px;
+  width:2px; border-radius:2px;
+  background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
+  filter:blur(.2px);
+}
+.xp-item{
+  position:relative;
+  display:grid;
+  grid-template-columns:68px 1fr;
+  gap:14px;
+  padding:12px 10px;
+  border-radius:14px;
+  transition:background .18s ease, transform .18s ease;
+}
+.xp-item:hover{
+  background:rgba(255,255,255,.02);
+  transform:translateY(-2px);
+}
+.xp-dot{
+  width:14px; height:14px; border-radius:50%;
+  margin:6px 0 0 27px;
+  background:radial-gradient(40% 40% at 50% 50%, #6fb3ac 0%, #2d5453 100%);
+  box-shadow:0 0 0 6px rgba(45,84,83,.18), 0 10px 22px rgba(0,0,0,.5);
+}
+.xp-body h4{
+  margin:0 0 4px;
+  font:700 18px/1.2 Inter, system-ui, sans-serif;
+}
+.xp-meta{
+  color:#a9a9a9; font-size:13px; margin-bottom:8px;
+}
+.xp-body p{ color:#d0d0d0; margin:0 }
+
+/* ===== Modern VALUES chips ===== */
+.values{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px; margin-top:22px; padding:0;
+}
+@media (max-width:1024px){ .values{grid-template-columns:1fr 1fr} }
+@media (max-width:720px){ .values{grid-template-columns:1fr} }
+
+.value-card{
+  list-style:none;
+  border-radius:18px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.06);
+  background:
+    linear-gradient(180deg,#131313,#0f0f0f);
+  box-shadow:0 10px 26px rgba(0,0,0,.45);
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s;
+}
+.value-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.12);
+  box-shadow:0 18px 40px rgba(0,0,0,.6);
+}
+.value-top{ display:flex; align-items:center; gap:10px; margin-bottom:8px }
+.value-bullet{
+  width:10px; height:10px; border-radius:999px;
+  background:radial-gradient(40% 40% at 50% 50%, #8fd7cf 0%, #2d5453 100%);
+  box-shadow:0 0 0 6px rgba(45,84,83,.14);
+}
+.value-card h4{
+  margin:0; font:700 18px/1.15 "Playfair Display", serif;
+}
+.value-card p{ margin:4px 0 0; color:#cfcfcf }
+
+
+  /* Skills */
+  .pills{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{background:#151515;border:1px solid #2b2b2b;padding:8px 12px;border-radius:999px;font-size:13px}
+  .bars{display:grid;gap:12px}
+  .bar{background:#131313;border:1px solid #222;border-radius:12px;padding:10px}
+  .bar label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:8px}
+  .meter{height:8px;background:#1e1e1e;border-radius:6px;overflow:hidden}
+  .meter>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#6fb3ac)}
+
+  /* Contact */
+  form.contact{display:grid;gap:14px;max-width:820px}
+  .field{display:grid;gap:8px}
+  .field label{font-weight:600;color:#e8e8e8}
+  .field input,.field textarea{background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:12px;color:#eaeaea}
+  .actions{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* Responsive */
+  @media (max-width:1024px){
+    .grid.cols-3{grid-template-columns:1fr 1fr}
+    .stats{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    .layout{grid-template-columns:1fr;gap:22px}
+    .word h1{font-size:22vw}
+    .grid.cols-2,.grid.cols-3{grid-template-columns:1fr}
+    .section-title{font-size:30px}
+  }
+  /* ===== Modern services tiles ===== */
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  margin-top:18px;
+}
+@media (max-width:1024px){ .services{grid-template-columns:1fr 1fr} }
+@media (max-width:720px){ .services{grid-template-columns:1fr} }
+
+.service{
+  position:relative;
+  padding:22px;
+  border-radius:16px;
+  background:
+    linear-gradient(180deg, #121212, #0f0f0f);
+  border:1px solid rgba(255,255,255,.06);
+  outline:1px solid rgba(255,255,255,.03);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.03) inset,
+    0 10px 30px rgba(0,0,0,.45);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s;
+}
+.service:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.04) inset,
+    0 18px 40px rgba(0,0,0,.6);
+  border-color:rgba(255,255,255,.12);
+}
+
+.svc-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.svc-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:#d6e7e6;background:rgba(45,84,83,.16);
+  border:1px solid rgba(45,84,83,.35);
+  padding:6px 10px;border-radius:999px;
+}
+.service h3{
+  margin:0;font:700 20px/1.1 "Playfair Display",serif;
+}
+.service p{margin:8px 0 14px;color:#cfcfcf}
+.svc-cta{
+  font-size:13px;font-weight:700;color:#d7faf6;
+  background:linear-gradient(90deg,var(--accent),#6fb3ac);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* ===== Slim KPIs bar ===== */
+.kpis{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  margin-top:22px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  overflow:hidden;
+  background:linear-gradient(180deg,#121212,#0e0e0e);
+}
+@media (max-width:1024px){ .kpis{grid-template-columns:1fr 1fr} }
+@media (max-width:720px){ .kpis{grid-template-columns:1fr} }
+
+.kpis li{
+  list-style:none;
+  padding:18px 16px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+.kpis li:last-child{border-right:none}
+
+.kpis strong{
+  font-family:"Playfair Display",serif;
+  font-weight:700;
+  font-size:26px;
+  line-height:1;
+  letter-spacing:.01em;
+  background:linear-gradient(180deg,#ffffff,#cfcfcf);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 8px 28px rgba(0,0,0,.55);
+}
+.kpis span{
+  font-size:12px;color:#bdbdbd;text-transform:uppercase;letter-spacing:.12em;
+}
+/* ===== Formation (modern timeline grid) ===== */
+.edu{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+@media (max-width:900px){ .edu{grid-template-columns:1fr} }
+
+.edu-card{
+  position:relative;
+  padding:18px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#131313,#0f0f0f);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:0 10px 28px rgba(0,0,0,.5);
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.edu-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 18px 44px rgba(0,0,0,.6);
+}
+
+.edu-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.edu-bullet{
+  width:10px;height:10px;border-radius:50%;
+  background:radial-gradient(40% 40% at 50% 50%, #8fd7cf 0%, #2d5453 100%);
+  box-shadow:0 0 0 6px rgba(45,84,83,.14);
+}
+.edu-card h3{
+  margin:0;font:700 18px/1.15 "Playfair Display",serif;
+}
+.edu-meta{color:#a9a9a9;font-size:13px;margin:2px 0 10px}
+.edu-card p{color:#d2d2d2;margin:0}
+/* ===== Compétences (tags + neon micro bars) ===== */
+.skills{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+@media (max-width:900px){ .skills{grid-template-columns:1fr} }
+
+.skill-tags, .skill-bars{
+  border-radius:18px;
+  padding:18px;
+  background:linear-gradient(180deg,#131313,#0f0f0f);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:0 10px 28px rgba(0,0,0,.5);
+}
+
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 12px;margin:6px;
+  font-size:13px;font-weight:600;color:#e9f7f5;
+  background:rgba(45,84,83,.2);
+  border:1px solid rgba(45,84,83,.36);
+  border-radius:999px;
+}
+
+.sbar{display:grid;gap:10px}
+.sbar + .sbar{margin-top:14px}
+.sbar-top{display:flex;justify-content:space-between;align-items:center}
+.sbar-top span{font-weight:600}
+.sbar-top strong{font-weight:800;color:#e7fdf9}
+
+.sbar-meter{
+  height:8px;border-radius:999px;overflow:hidden;
+  background:#101010;border:1px solid #222;
+}
+.sbar-meter > span{
+  display:block;height:100%;width:var(--w);
+  background:linear-gradient(90deg,var(--accent),#6fb3ac);
+  box-shadow:0 0 18px rgba(111,179,172,.55), inset 0 0 8px rgba(255,255,255,.08);
+  transform-origin:left;animation:grow .6s ease-out;
+  border-radius:999px;
+}
+@keyframes grow{from{width:0}to{width:var(--w)}}
+.competence-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;
+}
+
+.competence-card{
+  background:linear-gradient(180deg,#131313,#0f0f0f);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 10px 28px rgba(0,0,0,.45);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.competence-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 40px rgba(0,0,0,.6);
+  border-color:rgba(255,255,255,.12);
+}
+
+.competence-card h3{
+  margin:0 0 8px;
+  font:700 17px/1.2 "Playfair Display",serif;
+}
+.competence-card p{
+  margin:0;
+  color:#cfcfcf;
+  font-size:14px;
+  line-height:1.45;
+}
+/* Timeline scroll fill */
+.xp{ --xp-progress:0%; }
+.xp::after{
+  content:"";
+  position:absolute; left:34px; top:12px; width:2px;
+  height:var(--xp-progress);
+  background:linear-gradient(180deg,#8fd7cf,#2d5453);
+  border-radius:2px;
+  transition:height .25s ease-out;
+}
+
+/* Reveal + stagger */
+.xp-item{
+  opacity:0; transform:translateY(10px);
+  transition:opacity .45s ease, transform .45s ease;
+  transition-delay: calc(var(--i,0) * 70ms);
+}
+.xp-item.in{ opacity:1; transform:none; }
+
+/* Dot pulse when revealed */
+@keyframes xpPulse{
+  0%{ box-shadow:0 0 0 0 rgba(45,84,83,.28) }
+  70%{ box-shadow:0 0 0 10px rgba(45,84,83,0) }
+  100%{ box-shadow:0 0 0 0 rgba(45,84,83,0) }
+}
+.xp-item.in .xp-dot{
+  animation:xpPulse 1.8s ease-out 1;
+}
+
+/* Subtle glow on hover (keeps your lift) */
+.xp-item:hover .xp-body h4{
+  text-shadow:0 6px 24px rgba(111,179,172,.25);
+}
+/* 4) ADD THIS: sheet (modal/drawer) styles — uses your variables */
+.sheet{
+  position:fixed; inset:0; z-index:80; display:grid; place-items:end center;
+  background:transparent; transition:background .2s ease;
+}
+.sheet[aria-hidden="true"]{pointer-events:none;visibility:hidden}
+.sheet[aria-hidden="true"] .sheet__panel{opacity:0;transform:translateY(18px)}
+.sheet[aria-hidden="true"] .sheet__backdrop{opacity:0}
+
+
+.sheet__backdrop{
+  position:absolute; inset:0; background:rgba(0,0,0,.58); backdrop-filter:saturate(140%) blur(6px);
+  transition:opacity .2s ease;
+}
+.sheet__panel{
+  width:min(980px, 92vw); max-height:92vh; overflow:auto;
+  background:linear-gradient(180deg,#121212,#0e0e0e);
+  border:1px solid rgba(255,255,255,.08); outline:1px solid rgba(255,255,255,.04);
+  border-radius:22px 22px 0 0; padding:22px; box-shadow:0 -10px 60px rgba(0,0,0,.7);
+  transform:translateY(0); transition:transform .24s ease, opacity .24s ease;
+}
+
+.sheet__head{ position:sticky; top:0; background:linear-gradient(180deg,#121212,#101010);
+  border-bottom:1px solid rgba(255,255,255,.06); padding:8px 8px 14px; z-index:2; }
+.sheet__eyebrow{ color:#9f9f9f; text-transform:uppercase; letter-spacing:.18em; font-size:11px; }
+.sheet__title{ margin:2px 0 6px; font-family:"Playfair Display",serif; font-weight:700; font-size:28px; }
+.sheet__lead{ color:#cfcfcf; margin:0; max-width:64ch; }
+.sheet__close{
+  position:absolute; right:10px; top:10px; width:36px; height:36px; border-radius:10px;
+  background:#161616; color:#eee; border:1px solid #2a2a2a; cursor:pointer;
+}
+.sheet__content{ padding:16px 8px 8px; display:grid; gap:22px; }
+.sheet__foot{
+  position:sticky; bottom:0; display:flex; gap:10px; justify-content:flex-end;
+  padding:14px 8px 8px; background:linear-gradient(180deg,#0f0f0f,#0d0d0d);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+/* Blocks */
+.block{ border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:16px;
+  background:linear-gradient(180deg,#151515,#0f0f0f); box-shadow:0 10px 24px rgba(0,0,0,.45); }
+.block__title{ margin:0 0 10px; font:700 18px/1.2 "Playfair Display",serif; }
+
+/* Benefits list */
+.benefits{ margin:0; padding:0; list-style:none; display:grid; gap:10px; }
+.benefits li{
+  padding:10px 12px; border:1px solid rgba(255,255,255,.06); border-radius:12px;
+  background:#121212; color:#d8d8d8;
+}
+
+/* Steps */
+.steps{ margin:0; padding:0; list-style:none; display:grid; gap:12px; }
+.steps li{ display:grid; grid-template-columns:32px 1fr; gap:10px; align-items:start; }
+.step__badge{
+  width:32px; height:32px; border-radius:10px; display:grid; place-items:center; font-weight:800;
+  color:#eafffb; background:linear-gradient(180deg,var(--accent),#6fb3ac);
+  box-shadow:0 6px 20px rgba(45,84,83,.45);
+}
+
+/* Deliverables grid */
+.deliverables{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+@media (max-width:1024px){ .deliverables{ grid-template-columns:1fr 1fr; } }
+@media (max-width:640px){ .deliverables{ grid-template-columns:1fr; } }
+.dlv{
+  border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:12px;
+  background:linear-gradient(180deg,#141414,#0f0f0f);
+}
+.dlv h4{ margin:0 0 6px; font:700 16px/1.1 Inter,system-ui,sans-serif; }
+
+/* Chips */
+.chips{ margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  padding:8px 12px; border-radius:999px; font-size:12px; font-weight:700; color:#e9f7f5;
+  background:rgba(45,84,83,.2); border:1px solid rgba(45,84,83,.36);
+}
+
+/* FAQ */
+.faq{ border:1px solid rgba(255,255,255,.07); border-radius:12px; padding:10px 12px; background:#131313; }
+.faq + .faq{ margin-top:8px; }
+.faq summary{ cursor:pointer; font-weight:700; }
+.faq p{ margin:8px 0 0; color:#cfcfcf; }
+
+</style>
+</head>
+<body>
+  <!-- NAV -->
+  <header id="top" class="container nav">
+    <div class="brand"><span class="logo">PY</span> Pierre-Yves Fabrissin</div>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="#domaines">Domaines</a>
+      <a href="#experiences">Expériences</a>
+      <a href="#valeurs">Valeurs</a>
+      <a href="#formation">Formation</a>
+      <a href="#competences">Compétences</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO (inchangé) -->
+  <section class="hero container">
+    <div class="word" aria-hidden="true"><h1>PIERRE-YVES FABRISSIN</h1></div>
+    <div class="layout">
+      <div class="copy">
+        <div class="eyebrow">Délégué à la protection des données — RGPD & conformité</div>
+        <h1 class="title">DÉLÉGUÉ À LA PROTECTION<br/>DES DONNÉES (DPO)</h1>
+        <p class="lead">
+          Juriste conseil spécialisé en protection des données personnelles, droit des nouvelles technologies
+          et propriété intellectuelle.
+        </p>
+        <a class="btn" href="#contact">Me contacter</a>
+      </div>
+      <div class="portrait-wrap">
+        <img class="portrait" alt="Portrait de Pierre-Yves Fabrissin" src="./pierre.png" />
+      </div>
+      <div class="badge" id="cv">
+        <div class="badge-wrap">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs><path id="circlePath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" /></defs>
+            <text><textPath href="#circlePath">TÉLÉCHARGER MON CV </textPath></text>
+          </svg>
+          <a class="download-btn" href="./CV-PY-Fabrissin-FR.pdf" download="Pierre-Yves-Fabrissin-CV.pdf" title="Télécharger mon CV">
+            <span class="sr-only">Télécharger mon CV</span><span class="icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="clients">
+      <span>↘︎ Specialties</span>
+      <span class="dot"></span> Audit RGPD <span class="dot"></span> Gouvernance <span class="dot"></span> AIPD <span class="dot"></span> Sensibilisation
+    </div>
+  </section>
+
+  <!-- Domaines d’intervention (nouveau bloc style inspiration) -->
+  <section id="domaines" class="section container">
+    <h2 class="section-title">Domaines d’intervention</h2>
+    <p class="section-sub">Accompagnement stratégique et opérationnel sur tout le cycle de conformité RGPD.</p>
+
+   <!-- Services (modern tiles) -->
+<div class="services">
+  <article class="service">
+    <div class="svc-head">
+      <span class="svc-chip">Conformité</span>
+      <h3>Audit & Conformité</h3>
+    </div>
+    <p>Diagnostic RGPD, plans d’actions, cartographie des traitements.</p>
+<a class="svc-cta" href="#audit" data-open-sheet="audit">Voir détails ↗</a>
+
+
+  </article>
+
+  <article class="service">
+    <div class="svc-head">
+      <span class="svc-chip">Risques</span>
+      <h3>AIPD & Risques</h3>
+    </div>
+    <p>Analyses d’impact, registres, sécurité, conseils pratiques.</p>
+<a class="svc-cta" href="#aipd"  data-open-sheet="aipd">Voir détails ↗</a>
+  </article>
+
+  <article class="service">
+    <div class="svc-head">
+      <span class="svc-chip">Équipe</span>
+      <h3>Formation & Gouvernance</h3>
+    </div>
+    <p>Ateliers équipes, sensibilisation, modèles et procédures.</p>
+<a class="svc-cta" href="#form"  data-open-sheet="form">Voir détails ↗</a>
+  </article>
+</div>
+<!-- AUDIT sheet -->
+<section id="audit" class="sheet" aria-hidden="true" role="dialog" aria-labelledby="audit-title">
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="document" tabindex="-1">
+    <header class="sheet__head">
+      <div class="sheet__eyebrow">Conformité</div>
+      <h2 id="audit-title" class="sheet__title">Audit & Conformité RGPD</h2>
+      <p class="sheet__lead">
+        Diagnostic de conformité, cartographie des traitements, plan d’actions priorisé
+        et mise en place des fondations « accountability ».
+      </p>
+      <button class="sheet__close" type="button" aria-label="Fermer" data-close-sheet>✕</button>
+    </header>
+
+    <div class="sheet__content">
+      <!-- Outcomes -->
+      <section class="block">
+        <h3 class="block__title">Ce que vous obtenez</h3>
+        <ul class="benefits">
+          <li><strong>Diagnostic RGPD</strong> sur-mesure (écarts, risques, priorités).</li>
+          <li><strong>Cartographie des traitements</strong> & registre conforme (art. 30).</li>
+          <li><strong>Plan d’actions</strong> chiffré et séquencé (quick wins → structurants).</li>
+          <li><strong>Modèles</strong> essentiels : mentions, clauses, PIA, procédure droits, violations.</li>
+          <li><strong>Feuille de route</strong> 3–6 mois avec rôles & jalons (pilotage).</li>
+        </ul>
+      </section>
+
+      <!-- Method -->
+      <section class="block">
+        <h3 class="block__title">Méthodologie</h3>
+        <ol class="steps">
+          <li>
+            <span class="step__badge">1</span>
+            <div>
+              <strong>Cadrage & collecte</strong>
+              <p>Kick-off, périmètre, questionnaires, revue documentaire (contrats, outils, politiques).</p>
+            </div>
+          </li>
+          <li>
+            <span class="step__badge">2</span>
+            <div>
+              <strong>Entretiens métiers</strong>
+              <p>Processus clés (RH, Sales/CRM, Marketing, IT, Produit, Sécurité) & flux de données.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step__badge">3</span>
+            <div>
+              <strong>Analyse & scoring des risques</strong>
+              <p>Licéité, minimisation, durées, sécurité, sous-traitants, transferts, DPIA si nécessaire.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step__badge">4</span>
+            <div>
+              <strong>Restitution & roadmap</strong>
+              <p>Rapport, registre, actions priorisées, modèle de gouvernance & suivi.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Deliverables -->
+      <section class="block">
+        <h3 class="block__title">Livrables</h3>
+        <div class="deliverables">
+          <article class="dlv">
+            <h4>Rapport d’audit</h4>
+            <p>Écarts vs RGPD, risques, priorisation (RAG), recommandations concrètes.</p>
+          </article>
+          <article class="dlv">
+            <h4>Registre & cartographie</h4>
+            <p>Fiches de traitements, bases légales, durées, mesures, sous-traitants & transferts.</p>
+          </article>
+          <article class="dlv">
+            <h4>Kit conformité</h4>
+            <p>Mentions d’information, trame politique, modèles contractuels & procédures.</p>
+          </article>
+          <article class="dlv">
+            <h4>Feuille de route</h4>
+            <p>Plan d’actions 3–6 mois, jalons, responsabilités & indicateurs de suivi.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Examples -->
+      <section class="block">
+        <h3 class="block__title">Exemples d’interventions</h3>
+        <ul class="chips">
+          <li class="chip">SaaS B2B (CRM + analytics)</li>
+          <li class="chip">E-commerce (prospection & cookies)</li>
+          <li class="chip">RH (SIRH, paie, badgeuse)</li>
+          <li class="chip">Sécurité (journaux, accès, MDM)</li>
+          <li class="chip">DPIA : vidéosurveillance, géoloc</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="sheet__foot">
+      <a class="btn" href="#contact" data-close-sheet>Demander un devis</a>
+      <button class="btn secondary" type="button" data-close-sheet>Fermer</button>
+    </footer>
+  </div>
+</section>
+
+<!-- AIPD & RISQUES -->
+<section id="aipd" class="sheet" aria-hidden="true" role="dialog" aria-labelledby="aipd-title">
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="document" tabindex="-1">
+    <header class="sheet__head">
+      <div class="sheet__eyebrow">Risques</div>
+      <h2 id="aipd-title" class="sheet__title">AIPD & Risques</h2>
+      <p class="sheet__lead">Analyses d’impact (DPIA), registres, sécurité, conseils pratiques.</p>
+      <button class="sheet__close" type="button" aria-label="Fermer" data-close-sheet>✕</button>
+    </header>
+
+    <div class="sheet__content">
+      <section class="block">
+        <h3 class="block__title">Ce que vous obtenez</h3>
+        <ul class="benefits">
+          <li><strong>DPIA</strong> complet (méthodo CNIL), mesures et résidus de risques.</li>
+          <li><strong>Registre</strong> mis à jour (art. 30) et preuves d’accountability.</li>
+          <li><strong>Contrôles sécurité</strong> (journaux, accès, MDM, chiffrement, sauvegardes).</li>
+          <li><strong>Gestion cookies</strong> & prospection (bannières, bases légales).</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h3 class="block__title">Méthodologie</h3>
+        <ol class="steps">
+          <li><span class="step__badge">1</span><div><strong>Qualification</strong><p>Carto des traitements, critères DPIA, périmètre.</p></div></li>
+          <li><span class="step__badge">2</span><div><strong>Analyse</strong><p>Mesures existantes, risques, transferts, sous-traitants.</p></div></li>
+          <li><span class="step__badge">3</span><div><strong>Plan de réduction</strong><p>Mesures techniques/orgas priorisées et planifiées.</p></div></li>
+          <li><span class="step__badge">4</span><div><strong>Validation</strong><p>Restitution, arbitrages, registre & preuves.</p></div></li>
+        </ol>
+      </section>
+    </div>
+
+    <footer class="sheet__foot">
+      <a class="btn" href="#contact" data-close-sheet>Demander un devis</a>
+      <button class="btn secondary" type="button" data-close-sheet>Fermer</button>
+    </footer>
+  </div>
+</section>
+
+<!-- FORMATION & GOUVERNANCE -->
+<section id="form" class="sheet" aria-hidden="true" role="dialog" aria-labelledby="form-title">
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="document" tabindex="-1">
+    <header class="sheet__head">
+      <div class="sheet__eyebrow">Équipe</div>
+      <h2 id="form-title" class="sheet__title">Formation & Gouvernance</h2>
+      <p class="sheet__lead">Ateliers équipes, sensibilisation, modèles et procédures clés.</p>
+      <button class="sheet__close" type="button" aria-label="Fermer" data-close-sheet>✕</button>
+    </header>
+
+    <div class="sheet__content">
+      <section class="block">
+        <h3 class="block__title">Programmes</h3>
+        <div class="deliverables">
+          <article class="dlv"><h4>Sensibilisation</h4><p>1h–2h. Bases RGPD, cas métiers, quiz.</p></article>
+          <article class="dlv"><h4>Formations ciblées</h4><p>Marketing, Produit, RH, IT/Sécu.</p></article>
+          <article class="dlv"><h4>Gouvernance</h4><p>Rôles, rituels, reporting, tableaux de bord.</p></article>
+          <article class="dlv"><h4>Kits & modèles</h4><p>Politiques, mentions, trames, procédures.</p></article>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3 class="block__title">Format</h3>
+        <ul class="benefits">
+          <li>Ateliers interactifs (présentiel/visio).</li>
+          <li>Supports & replay fournis.</li>
+          <li>Évaluations et certificats de suivi.</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="sheet__foot">
+      <a class="btn" href="#contact" data-close-sheet>Demander un devis</a>
+      <button class="btn secondary" type="button" data-close-sheet>Fermer</button>
+    </footer>
+  </div>
+</section>
+
+
+
+<!-- KPIs (slim bar) -->
+<ul class="kpis" aria-label="Indicateurs">
+  <li><strong>8+</strong><span>années</span></li>
+  <li><strong>120+</strong><span>missions RGPD</span></li>
+  <li><strong>600+</strong><span>collaborateurs formés</span></li>
+  <li><strong>Public & privé</strong><span>secteurs</span></li>
+</ul>
+
+  </section>
+
+  <!-- Expériences (timeline compacte) -->
+  <section id="experiences" class="section container">
+    <h2 class="section-title">Expériences professionnelles</h2>
+<div class="xp">
+  <article class="xp-item">
+    <span class="xp-dot"></span>
+    <div class="xp-body">
+      <h4>Délégué à la protection des données — Externalisé</h4>
+      <div class="xp-meta">2023 – 2024 · Nouvel Horizon Conseil France · Paris</div>
+      <p>Audits RGPD, feuilles de route, registres, AIPD, sécurité, formation & sensibilisation, accountability, contractualisation RGPD, dispositifs à risque (vidéosurveillance, géolocalisation, contrôle d’accès, KYC/LCB-FT).</p>
+    </div>
+  </article>
+
+  <article class="xp-item">
+    <span class="xp-dot"></span>
+    <div class="xp-body">
+      <h4>Chef de projet marques</h4>
+      <div class="xp-meta">2019 – 2022 · Cabinet Casalonga · Paris</div>
+      <p>Gestion de portefeuille de marques, reporting, optimisation/automatisation de process, coordination internationale, rédaction contractuelle, procédures administratives.</p>
+    </div>
+  </article>
+
+  <article class="xp-item">
+    <span class="xp-dot"></span>
+    <div class="xp-body">
+      <h4>Juriste PI/TIC</h4>
+      <div class="xp-meta">2018 · Inria · Santiago, Chili</div>
+      <p>Valorisation PI, transferts technologiques, environnement Open Source, contrats projets « AGILE », interventions INAPI (blockchain, smart contracts).</p>
+    </div>
+  </article>
+</div>
+
+  </section>
+
+  <!-- Valeurs -->
+  <section id="valeurs" class="section container">
+    <h2 class="section-title">Mes valeurs</h2>
+<ul class="values">
+  <li class="value-card">
+    <div class="value-top">
+      <span class="value-bullet"></span>
+      <h4>Rigueur</h4>
+    </div>
+    <p>Méthodologie éprouvée et documentée, adaptée aux réalités du terrain.</p>
+  </li>
+
+  <li class="value-card">
+    <div class="value-top">
+      <span class="value-bullet"></span>
+      <h4>Pragmatisme</h4>
+    </div>
+    <p>Solutions concrètes, responsables et orientées résultats.</p>
+  </li>
+
+  <li class="value-card">
+    <div class="value-top">
+      <span class="value-bullet"></span>
+      <h4>Pédagogie</h4>
+    </div>
+    <p>Vulgarisation juridique, clarté et accompagnement des équipes.</p>
+  </li>
+</ul>
+
+  </section>
+
+  <!-- Formation -->
+  <section id="formation" class="section container">
+    <h2 class="section-title">Formation</h2>
+<div class="edu">
+  <article class="edu-card">
+    <div class="edu-top">
+      <span class="edu-bullet"></span>
+      <h3>MS — Management et protection des données</h3>
+    </div>
+    <div class="edu-meta">Institut Supérieur d’Électronique de Paris (ISEP) · 2024</div>
+    <p>Thèse pro : « La valorisation du traitement des demandes d’exercice de droits ».</p>
+  </article>
+
+  <article class="edu-card">
+    <div class="edu-top">
+      <span class="edu-bullet"></span>
+      <h3>M2 — Expertise des systèmes d’information</h3>
+    </div>
+    <div class="edu-meta">Université Paris II (Panthéon-Assas) · 2019</div>
+    <p>Protection des nouvelles technologies, sécurisation juridique des SI.</p>
+  </article>
+
+  <article class="edu-card">
+    <div class="edu-top">
+      <span class="edu-bullet"></span>
+      <h3>DU — Marques et brevets d’invention (cycle long)</h3>
+    </div>
+    <div class="edu-meta">CEIPI · 2017</div>
+    <p>PI, protection & valorisation de l’innovation et des actifs immatériels.</p>
+  </article>
+
+  <article class="edu-card">
+    <div class="edu-top">
+      <span class="edu-bullet"></span>
+      <h3>M2 — Droit de la propriété intellectuelle</h3>
+    </div>
+    <div class="edu-meta">Université Toulouse 1 (Capitole) · 2016</div>
+    <p>Mémoire : « La protection des données personnelles : actualité et perspectives ».</p>
+  </article>
+</div>
+
+  </section>
+
+  <!-- Compétences -->
+<section id="competences" class="section container">
+  <h2 class="section-title">Compétences</h2>
+  <div class="competence-grid">
+    
+    <article class="competence-card">
+      <h3>RGPD</h3>
+      <p>Diagnostic de conformité, plans d’action et accompagnement stratégique pour vos projets sensibles.</p>
+    </article>
+    
+    <article class="competence-card">
+      <h3>AIPD / DPIA</h3>
+      <p>Réalisation d’analyses d’impact complètes : registres, sécurité, méthodologie et conseils pratiques.</p>
+    </article>
+    
+    <article class="competence-card">
+      <h3>Accountability</h3>
+      <p>Mise en place de process documentés pour prouver et maintenir votre conformité dans le temps.</p>
+    </article>
+    
+    <article class="competence-card">
+      <h3>Cybersécurité</h3>
+      <p>Intégration de la protection des données dans vos dispositifs techniques et organisationnels.</p>
+    </article>
+    
+    <article class="competence-card">
+      <h3>Sensibilisation & formation</h3>
+      <p>Ateliers interactifs et programmes de formation adaptés aux équipes métiers et techniques.</p>
+    </article>
+    
+    <article class="competence-card">
+      <h3>Propriété intellectuelle</h3>
+      <p>Protection et valorisation de vos innovations : marques, brevets, contrats technologiques.</p>
+    </article>
+    
+    <article class="competence-card">
+      <h3>Gestion de projet</h3>
+      <p>Coordination de missions complexes, suivi opérationnel et pilotage agile des équipes.</p>
+    </article>
+    
+  </div>
+</section>
+
+
+  <!-- Contact -->
+  <section id="contact" class="section container">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Parlez-moi de votre projet (réponse sous 24 h ouvrées).</p>
+    <form class="contact" action="mailto:contact@example.com" method="post" enctype="text/plain">
+      <div class="grid cols-2">
+        <div class="field">
+          <label for="name">Nom</label>
+          <input id="name" name="name" type="text" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+      </div>
+      <div class="field">
+        <label for="subject">Sujet</label>
+        <input id="subject" name="subject" type="text" required />
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn">Envoyer</button>
+        <a class="btn secondary" href="#top">Retour en haut</a>
+      </div>
+    </form>
+  </section>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Stagger index
+  document.querySelectorAll('.xp .xp-item').forEach((el, i) => {
+    el.style.setProperty('--i', i);  // used in CSS delay
+  });
+
+  // Reveal items on scroll
+  const items = document.querySelectorAll('.xp .xp-item');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(el => io.observe(el));
+
+  // Fill the vertical line as the section scrolls into view
+  const xp = document.querySelector('.xp');
+  if (xp) {
+    const update = () => {
+      const r = xp.getBoundingClientRect();
+      // progress from first visible pixel to fully scrolled through
+      const start = Math.min(window.innerHeight * 0.8, window.innerHeight);
+      const visible = Math.max(0, Math.min(r.height, start - r.top));
+      const pct = Math.max(0, Math.min(1, visible / (r.height + 1e-6)));
+      xp.style.setProperty('--xp-progress', (pct * 100) + '%');
+    };
+    update();
+    window.addEventListener('scroll', update, { passive:true });
+    window.addEventListener('resize', update);
+  }
+});
+</script>
+<script>
+/* Single-sheet controller for #audit */
+(function(){
+  const SHEET_ID = 'audit';
+  const sheet = document.getElementById(SHEET_ID);
+  if(!sheet) return;
+
+  const openers = document.querySelectorAll('[data-open-sheet="'+SHEET_ID+'"]');
+  const panel   = sheet.querySelector('.sheet__panel');
+  const closers = sheet.querySelectorAll('[data-close-sheet], .sheet__backdrop');
+
+  let lastOpener = null;
+
+  function open(e){
+    if(e){ e.preventDefault(); lastOpener = e.currentTarget; }
+    sheet.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+    panel && panel.focus();
+    document.addEventListener('keydown', onEsc);
+  }
+  function close(){
+    sheet.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    lastOpener && lastOpener.focus();
+    document.removeEventListener('keydown', onEsc);
+  }
+  function onEsc(e){ if(e.key === 'Escape') close(); }
+
+  openers.forEach(btn => btn.addEventListener('click', open));
+  closers.forEach(el  => el.addEventListener('click', close));
+})();
+</script>
+<script>
+(function(){
+  // Open any sheet by data-open-sheet="ID"
+  document.addEventListener('click', function(e){
+    const opener = e.target.closest('[data-open-sheet]');
+    if(!opener) return;
+
+    e.preventDefault();
+    const id = opener.getAttribute('data-open-sheet');
+    const sheet = document.getElementById(id);
+    if(!sheet) return;
+
+    const panel = sheet.querySelector('.sheet__panel');
+    sheet.removeAttribute('aria-hidden');
+    sheet.setAttribute('aria-modal','true');
+    sheet._lastOpener = opener;            // remember opener for focus return
+    document.body.style.overflow = 'hidden';
+    if(panel) panel.focus();
+  });
+
+  // Close when clicking any [data-close-sheet] or the backdrop
+  document.addEventListener('click', function(e){
+    const isCloseBtn = e.target.matches('[data-close-sheet]');
+    const isBackdrop = e.target.classList && e.target.classList.contains('sheet__backdrop');
+    if(!isCloseBtn && !isBackdrop) return;
+
+    const sheet = e.target.closest('.sheet') || document.querySelector('.sheet:not([aria-hidden="true"])');
+    if(sheet) closeSheet(sheet);
+  });
+
+  // Close on Esc (closes the last-open one if multiple exist)
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Escape') return;
+    const openSheets = Array.from(document.querySelectorAll('.sheet:not([aria-hidden="true"])'));
+    const top = openSheets.pop();
+    if(top) closeSheet(top);
+  });
+
+  function closeSheet(sheet){
+    sheet.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    if(sheet._lastOpener) sheet._lastOpener.focus();
+  }
+})();
+</script>
+
+
+
+</body>
+</html>
